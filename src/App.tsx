@@ -15,7 +15,7 @@ interface Project { //defines structure of projects
   image?: string;
 }
 
-interface FormData { //defines structure of contact form
+interface ContactFormData { //defines structure of contact form
   name: string;
   email: string;
   message: string;
@@ -218,7 +218,7 @@ const Projects: React.FC = () => {
 
 // Contact Component
 const Contact: React.FC = () => {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<ContactFormData>({
     name: "",
     email: "",
     message: "",
@@ -245,12 +245,19 @@ const Contact: React.FC = () => {
 
     setIsSubmitting(true);
 
+    const templateParams = {
+      from_name: formData.name,
+      from_email: formData.email,
+      message: formData.message,
+  
+    };
+
     // SEND EMAIL THROUGH EMAILJS
     emailjs
       .send(
         "service_zbwchpe",
         "template_ao85k6j",
-        formData,
+        templateParams,
         "e_8Wb1SkELK7EZ8dB"
       )
       .then(() => {
