@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './design.css';
 import emailjs from "emailjs-com"
 import profileImage from './assets/img2.png';
@@ -23,12 +23,13 @@ interface ContactFormData { //defines structure of contact form
 
 // Header Component
 const Header: React.FC = () => {
+  const [menuOpen, setMenuOpen] = useState(false);
+
   return (
     <header className="header">
       <div className="container">
         <div className="logo">Enoabasi Akpata.</div>
         <nav className="nav">
-          {/*provides links to different parts of the page*/}
           <a href="#home">Home</a>
           <a href="#works">Works</a>
           <a href="#about">About</a>
@@ -38,23 +39,45 @@ const Header: React.FC = () => {
           <span className="status-dot"></span>
           Available for new opportunities
         </div>
+
+        {/*Mobile menu button*/}
+        <button
+          className="menu-btn"
+          onClick={() => setMenuOpen(!menuOpen)}
+          aria-label="Toggle menu"
+        >
+          ☰
+        </button>
       </div>
+      
+      {/* Mobile navigation */}
+      {menuOpen && (
+        <nav className="mobile-nav">
+          <a href="#home" onClick={() => setMenuOpen(false)}>Home</a>
+          <a href="#works" onClick={() => setMenuOpen(false)}>Works</a>
+          <a href="#about" onClick={() => setMenuOpen(false)}>About</a>
+          <a href="#contact" onClick={() => setMenuOpen(false)}>Contact</a>
+        </nav>
+      )}
     </header>
   );
 };
 
 // Hero Component
 const Hero: React.FC = () => {
+  const [imageLoaded, setImageLoaded] = useState(false);
+
+  useEffect(() => {
+    //preload image
+    const img = new Image();
+    img.src = profileImage;
+    img.onload = () => setImageLoaded(true);
+  }, []);
+
   return (
     <section id="home" className="hero">
       <div className="container">
         <div className="hero-content">
-
-          {/*<h1 className="hero-title">
-            <span className="italic">Hi there,</span>
-          </h1>*/}
-
-
 
           <div className="hero-bottom">
             <div className="hero-statement">
@@ -62,8 +85,12 @@ const Hero: React.FC = () => {
               <div className="statement-name">I AM ENOABASI</div>
             </div>
 
-            <div className="hero-image">
-              <img src={profileImage}/>
+            <div className={`hero-image ${imageLoaded ? 'loaded' : ''}`}>
+              <img
+                src={profileImage}
+                alt="Enoabasi"
+                loading="eager"
+              />
             </div>
 
             <div className="hero-role">
@@ -178,11 +205,11 @@ const Projects: React.FC = () => {
         <div className="projects-grid">
           {projects.map((project) => (
             <div key={project.id} className="project-card">
-              <hr className = "divider" />
+              <hr className="divider" />
               <div className="project-image">
-                <img 
-                  src = {project.image}
-                  alt = {project.title}
+                <img
+                  src={project.image}
+                  alt={project.title}
                 />
               </div>
               <div className="project-content">
@@ -249,7 +276,7 @@ const Contact: React.FC = () => {
       from_name: formData.name,
       from_email: formData.email,
       message: formData.message,
-  
+
     };
 
     // SEND EMAIL THROUGH EMAILJS
