@@ -26,6 +26,7 @@ body {
   color: var(--black);
   line-height: 1.6;
   background: var(--white);
+  overflow-x: hidden;
 }
 
 .app {
