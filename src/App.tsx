@@ -49,7 +49,7 @@ const Header: React.FC = () => {
           ☰
         </button>
       </div>
-      
+
       {/* Mobile navigation */}
       {menuOpen && (
         <nav className="mobile-nav">
@@ -180,22 +180,15 @@ const Projects: React.FC = () => {
     },
     {
       id: 3,
-      title: 'Analytics Dashboard',
+      title: 'Weather Forecast',
       description:
-        'Data visualization platform with interactive charts, custom reporting, and real-time data processing for business insights.',
-      technologies: ['React', 'TypeScript', 'D3.js', 'PostgreSQL'],
-      github: '#',
-      demo: '#',
+        'Weather website, that shows a 5 day forecast.',
+      technologies: ['React', 'TypeScript', 'Vite'],
+      github: 'https://github.com/enoakpata/weather-app/tree/main',
+      //demo: 'weather-app-tau-gules-53.vercel.app',
+      image: '/images/weather_forecast.png',
     },
-    {
-      id: 4,
-      title: 'Social Media App',
-      description:
-        'Feature-rich social platform with user authentication, media sharing, real-time messaging, and activity feeds.',
-      technologies: ['React', 'Node.js', 'Socket.io', 'AWS'],
-      github: '#',
-      demo: '#',
-    },
+    
   ];
 
   return (
@@ -377,7 +370,7 @@ const Footer: React.FC = () => {
   return (
     <footer className="footer">
       <div className="container">
-        <p>&copy; 2024 Enoabasi Akpata. All rights reserved.</p>
+        <p>&copy; Enoabasi Akpata. 22120612872.</p>
         <div className="social-links">
           <a href="https://github.com/enoakpata" aria-label="GitHub">GitHub</a>
           <a href="https://www.linkedin.com/in/enoabasi-akpata-892878291/" aria-label="LinkedIn">LinkedIn</a>
