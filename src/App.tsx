@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './design.css';
 import emailjs from "emailjs-com"
 import profileImage from './assets/img2.png';
+import ProjectDetail from './components/ProjectDetail';
+
 
 
 
@@ -20,6 +23,17 @@ interface ContactFormData { //defines structure of contact form
   email: string;
   message: string;
 }
+
+const HomePage: React.FC = () => {
+  return (
+    <>
+      <Hero />
+      <Projects />
+      <About />
+      <Contact />
+    </>
+  );
+};
 
 // Header Component
 const Header: React.FC = () => {
@@ -175,7 +189,7 @@ const Projects: React.FC = () => {
         'Shift management system that leverages biometrics for signing in and out.',
       technologies: ['Java', 'MySQL'],
       github: 'https://github.com/enoakpata/shift-management-system.git',
-      //demo: '#',
+      demo: '/project/shift-management',
       image: '/images/smss.png',
     },
     {
@@ -223,7 +237,7 @@ const Projects: React.FC = () => {
                   )}
                   {project.demo && (
                     <a href={project.demo} className="project-link">
-                      Live Demo →
+                        {project.id === 2 ? 'View Details →' : 'Live Demo →'}
                     </a>
                   )}
                 </div>
@@ -383,16 +397,18 @@ const Footer: React.FC = () => {
 // Main App Component
 const App: React.FC = () => {
   return (
-    <div className="app">
-      <Header />
-      <main>
-        <Hero />
-        <Projects />
-        <About />
-        <Contact />
-      </main>
-      <Footer />
-    </div>
+    <Router>
+      <div className="app">
+        <Header />
+        <main>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/project/shift-management" element={<ProjectDetail />} />
+          </Routes>
+        </main>
+        <Footer />
+      </div>
+    </Router>
   );
 };
 

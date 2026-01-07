@@ -651,3 +651,265 @@ section {
     padding: 1.5rem;
   }
 }
+
+/* ===================================
+   PROJECT DETAIL PAGE
+   =================================== */
+
+.project-detail {
+  background: var(--white);
+}
+
+/* ---------- Hero ---------- */
+.project-hero {
+  background: var(--cream);
+  padding: 6rem 0 4rem;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 1.5rem;
+  text-decoration: none;
+  color: var(--black);
+  font-size: 0.9rem;
+  font-weight: 500;
+  opacity: 0.7;
+}
+
+.back-link:hover {
+  opacity: 1;
+}
+
+.project-detail-title {
+  font-size: 3.5rem;
+  font-weight: 900;
+  letter-spacing: -1px;
+  margin-bottom: 1rem;
+}
+
+.project-tagline {
+  font-size: 1.1rem;
+  color: var(--gray);
+  max-width: 700px;
+  margin-bottom: 2rem;
+}
+
+.project-meta {
+  display: flex;
+  gap: 2rem;
+  font-size: 0.9rem;
+  color: var(--gray);
+}
+
+/* ---------- Sections ---------- */
+.project-section {
+  padding: 6rem 0;
+}
+
+.bg-light {
+  background: var(--cream);
+}
+
+.container-narrow {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.section-heading {
+  font-size: 2.25rem;
+  font-weight: 900;
+  letter-spacing: -0.5px;
+  margin-bottom: 2.5rem;
+}
+
+.project-text {
+  font-size: 1.05rem;
+  color: var(--gray);
+  line-height: 1.8;
+}
+
+/* ---------- Problem Cards ---------- */
+.problem-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+}
+
+.problem-card {
+  background: var(--white);
+  padding: 2rem;
+  border-radius: 12px;
+  border: 1px solid var(--light-gray);
+}
+
+.problem-card h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+}
+
+/* ---------- Features ---------- */
+.features-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+.feature-item {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.feature-number {
+  font-size: 1.25rem;
+  font-weight: 900;
+  color: var(--gray);
+}
+
+.feature-content h3 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.feature-content p {
+  color: var(--gray);
+  line-height: 1.7;
+}
+
+/* ---------- Technologies ---------- */
+.tech-categories {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+}
+
+.tech-category-title {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+}
+
+.tech-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+/* ---------- Learning ---------- */
+.learning-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+}
+
+.learning-card {
+  background: var(--white);
+  padding: 2rem;
+  border-radius: 12px;
+  border: 1px solid var(--light-gray);
+}
+
+.learning-card h3 {
+  margin-bottom: 0.75rem;
+}
+
+.learning-points {
+  margin-top: 1rem;
+  padding-left: 1.2rem;
+  color: var(--gray);
+}
+
+.learning-points li {
+  margin-bottom: 0.5rem;
+}
+
+/* ---------- CTA ---------- */
+.project-cta {
+  background: var(--black);
+  color: var(--white);
+  padding: 5rem 0;
+  text-align: center;
+}
+
+.project-cta h2 {
+  font-size: 2.25rem;
+  margin-bottom: 1rem;
+}
+
+.project-cta p {
+  opacity: 0.8;
+  margin-bottom: 2rem;
+}
+
+.cta-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+.btn-secondary {
+  background: transparent;
+  border: 1px solid var(--white);
+  color: var(--white);
+}
+
+.btn-secondary:hover {
+  opacity: 0.7;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 768px) {
+  .problem-grid,
+  .tech-categories,
+  .learning-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .project-detail-title {
+    font-size: 2.5rem;
+  }
+
+  .feature-item {
+    flex-direction: column;
+  }
+
+  .cta-buttons {
+    flex-direction: column;
+  }
+}
+
+/* ---------- Screenshots ---------- */
+
+.screenshots-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+}
+
+.screenshot-card {
+  background: var(--white);
+  border-radius: 12px;
+  border: 1px solid var(--light-gray);
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.screenshot-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+}
+
+.screenshot-card img {
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+  display: block;
+}
+
+.screenshot-caption {
+  padding: 1rem 1.25rem;
+  font-size: 0.9rem;
+  color: var(--gray);
+}
