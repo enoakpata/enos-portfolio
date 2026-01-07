@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import './design.css';
 import emailjs from "emailjs-com"
 import profileImage from './assets/img2.png';
@@ -229,18 +229,28 @@ const Projects: React.FC = () => {
                     </span>
                   ))}
                 </div>
-                <div className="project-links">
-                  {project.github && (
-                    <a href={project.github} className="project-link">
-                      View Code →
-                    </a>
-                  )}
-                  {project.demo && (
-                    <a href={project.demo} className="project-link">
-                        {project.id === 2 ? 'View Details →' : 'Live Demo →'}
-                    </a>
-                  )}
-                </div>
+               <div className="project-links">
+  {project.github && (
+    <a href={project.github} className="project-link">
+      View Code →
+    </a>
+  )}
+  {project.demo && (
+    /* If it is the Shift Management System (id: 2), 
+       use <Link> to navigate without refreshing the page.
+       For others, use a standard <a> tag for external demos.
+    */
+    project.id === 2 ? (
+      <Link to={project.demo} className="project-link">
+        View Details →
+      </Link>
+    ) : (
+      <a href={project.demo} className="project-link" target="_blank" rel="noreferrer">
+        Live Demo →
+      </a>
+    )
+  )}
+</div>
               </div>
             </div>
           ))}
