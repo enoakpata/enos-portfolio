@@ -1,14 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import './design.css';
 import emailjs from "emailjs-com"
-import profileImage from './assets/img2.png';
 import ProjectDetail from './components/ProjectDetail';
+import { projectDetails } from './data/projects';
 
-
-
-
-interface Project { //defines structure of projects
+interface OtherProject {
   id: number;
   title: string;
   description: string;
@@ -18,7 +15,7 @@ interface Project { //defines structure of projects
   image?: string;
 }
 
-interface ContactFormData { //defines structure of contact form
+interface ContactFormData {
   name: string;
   email: string;
   message: string;
@@ -54,7 +51,6 @@ const Header: React.FC = () => {
           Available for new opportunities
         </div>
 
-        {/*Mobile menu button*/}
         <button
           className="menu-btn"
           onClick={() => setMenuOpen(!menuOpen)}
@@ -64,7 +60,6 @@ const Header: React.FC = () => {
         </button>
       </div>
 
-      {/* Mobile navigation */}
       {menuOpen && (
         <nav className="mobile-nav">
           <a href="#home" onClick={() => setMenuOpen(false)}>Home</a>
@@ -77,46 +72,27 @@ const Header: React.FC = () => {
   );
 };
 
-// Hero Component
+// Hero Component — no photo, ML/AI/DS positioning
 const Hero: React.FC = () => {
-  const [imageLoaded, setImageLoaded] = useState(false);
-
-  useEffect(() => {
-    //preload image
-    const img = new Image();
-    img.src = profileImage;
-    img.onload = () => setImageLoaded(true);
-  }, []);
-
   return (
     <section id="home" className="hero">
       <div className="container">
         <div className="hero-content">
-
           <div className="hero-bottom">
             <div className="hero-statement">
               <div className="statement-name">HI,</div>
               <div className="statement-name">I AM ENOABASI</div>
             </div>
 
-            <div className={`hero-image ${imageLoaded ? 'loaded' : ''}`}>
-              <img
-                src={profileImage}
-                alt="Enoabasi"
-                loading="eager"
-              />
-            </div>
-
             <div className="hero-role">
-              <div className="role-title">FULL STACK DEVELOPER</div>
+              <div className="role-title">MACHINE LEARNING &amp; AI</div>
             </div>
           </div>
 
           <div className="hero-description">
-            <p>Specialized in Web Development,</p>
-            <p>React, TypeScript, and Node.js.</p>
+            <p>Specialized in Machine Learning,</p>
+            <p>Deep Learning, and Applied Data Science.</p>
           </div>
-
         </div>
       </div>
     </section>
@@ -126,13 +102,13 @@ const Hero: React.FC = () => {
 // About Component
 const About: React.FC = () => {
   const skills = [
-    'TypeScript',
-    'React',
-    'Node.js',
-    'MySql',
-    'Java',
-    'PostgreSQL',
-    'REST APIs',
+    'Python',
+    'scikit-learn',
+    'XGBoost',
+    'PyTorch',
+    'SHAP & Grad-CAM',
+    'Streamlit',
+    'SQL',
     'Git',
   ];
 
@@ -143,14 +119,14 @@ const About: React.FC = () => {
         <div className="about-content">
           <div className="about-text">
             <p>
-              I'm a passionate full stack developer with a love for creating elegant solutions
-              to complex problems. With expertise in modern web technologies, I specialize in
-              building scalable and performant applications.
+              I'm a Computer Science undergraduate focused on machine learning and applied AI,
+              drawn to problems where data can meaningfully improve decision-making — especially
+              in domains like healthcare and accessibility.
             </p>
             <p>
-              My approach combines clean code, user-centered design, and a commitment to
-              continuous learning. I thrive in collaborative environments and enjoy turning
-              ideas into reality.
+              My work spans the full ML lifecycle: from data preprocessing and model architecture
+              to explainability and deployment. I care as much about whether a model can be trusted
+              and understood as I do about how well it performs.
             </p>
           </div>
           <div className="skills">
@@ -169,14 +145,16 @@ const About: React.FC = () => {
   );
 };
 
-// Projects Component
+// Projects Component — AI/ML projects featured, everything else secondary
 const Projects: React.FC = () => {
-  const projects: Project[] = [
+  const aiProjectSlugs = ['pcos-multimodal-detection', 'color-readability-classifier'];
+  const aiProjects = aiProjectSlugs.map((slug) => projectDetails[slug]);
+
+  const otherProjects: OtherProject[] = [
     {
       id: 1,
       title: 'Hotel Menu',
-      description:
-        'A hotel menu embedded within a QR code.',
+      description: 'A hotel menu embedded within a QR code.',
       technologies: ['React', 'TypeScript', 'Vite'],
       github: 'https://github.com/enoakpata/kt-menu-v2.git',
       demo: 'https://kt-menu-v2-uor6.vercel.app/',
@@ -185,72 +163,84 @@ const Projects: React.FC = () => {
     {
       id: 2,
       title: 'Shift Management System',
-      description:
-        'Shift management system that leverages biometrics for signing in and out.',
+      description: 'Shift management system that leverages biometrics for signing in and out.',
       technologies: ['Java', 'MySQL'],
       github: 'https://github.com/enoakpata/shift-management-system.git',
-      demo: '/project/shift-management',
+      demo: '/project/shift-management-system',
       image: '/images/smss.png',
     },
-    {
-      id: 3,
-      title: 'Weather Forecast',
-      description:
-        'Weather website, that shows a 5 day forecast.',
-      technologies: ['React', 'TypeScript', 'Vite'],
-      github: 'https://github.com/enoakpata/weather-app/tree/main',
-      //demo: 'weather-app-tau-gules-53.vercel.app',
-      image: '/images/weather_forecast.png',
-    },
-    
+    // {
+    //   id: 3,
+    //   title: 'Weather Forecast',
+    //   description: 'Weather website that shows a 5 day forecast.',
+    //   technologies: ['React', 'TypeScript', 'Vite'],
+    //   github: 'https://github.com/enoakpata/weather-app/tree/main',
+    //   image: '/images/weather_forecast.png',
+    // },
   ];
 
   return (
     <section id="works" className="projects">
       <div className="container">
-        <h2 className="section-title">RECENT PROJECTS</h2>
+        {/* Featured AI/ML Projects */}
+        <h2 className="section-title">AI &amp; MACHINE LEARNING PROJECTS</h2>
+        <div className="projects-featured-grid">
+          {aiProjects.map((project) => (
+            <div key={project.slug} className="featured-project-card">
+              <h3 className="featured-project-title">{project.title}</h3>
+              <p className="featured-project-tagline">{project.tagline}</p>
+              <div className="project-tech">
+                {project.techCategories.flatMap((c) => c.items).slice(0, 6).map((tech) => (
+                  <span key={tech} className="tech-tag">{tech}</span>
+                ))}
+              </div>
+              <div className="project-links">
+                <a href={project.githubUrl} className="project-link" target="_blank" rel="noreferrer">
+                  View Code →
+                </a>
+                <Link to={`/project/${project.slug}`} className="project-link">
+                  View Case Study →
+                </Link>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Other Projects */}
+        <h3 className="subsection-title">OTHER PROJECTS</h3>
         <div className="projects-grid">
-          {projects.map((project) => (
+          {otherProjects.map((project) => (
             <div key={project.id} className="project-card">
               <hr className="divider" />
               <div className="project-image">
-                <img
-                  src={project.image}
-                  alt={project.title}
-                />
+                <img src={project.image} alt={project.title} />
               </div>
               <div className="project-content">
                 <h3 className="project-title">{project.title}</h3>
                 <p className="project-description">{project.description}</p>
                 <div className="project-tech">
                   {project.technologies.map((tech) => (
-                    <span key={tech} className="tech-tag">
-                      {tech}
-                    </span>
+                    <span key={tech} className="tech-tag">{tech}</span>
                   ))}
                 </div>
-               <div className="project-links">
-  {project.github && (
-    <a href={project.github} className="project-link">
-      View Code →
-    </a>
-  )}
-  {project.demo && (
-    /* If it is the Shift Management System (id: 2), 
-       use <Link> to navigate without refreshing the page.
-       For others, use a standard <a> tag for external demos.
-    */
-    project.id === 2 ? (
-      <Link to={project.demo} className="project-link">
-        View Details →
-      </Link>
-    ) : (
-      <a href={project.demo} className="project-link" target="_blank" rel="noreferrer">
-        Live Demo →
-      </a>
-    )
-  )}
-</div>
+                <div className="project-links">
+                  {project.github && (
+                    <a href={project.github} className="project-link" target="_blank" rel="noreferrer">
+                      View Code →
+                    </a>
+                  )}
+                  {project.demo && (
+                    project.id === 2 ? (
+                      <Link to={project.demo} className="project-link">
+                        View Details →
+                      </Link>
+                    ) : (
+                      <a href={project.demo} className="project-link" target="_blank" rel="noreferrer">
+                        Live Demo →
+                      </a>
+                    )
+                  )}
+                </div>
               </div>
             </div>
           ))}
@@ -281,7 +271,6 @@ const Contact: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    // VALIDATION
     if (!formData.name || !formData.email || !formData.message) {
       setStatus("Please fill in all fields ❗");
       return;
@@ -290,13 +279,12 @@ const Contact: React.FC = () => {
     setIsSubmitting(true);
 
     const templateParams = {
-      from_name: formData.name,
-      from_email: formData.email,
+      name: formData.name,
+      email: formData.email,
       message: formData.message,
-
+      time: new Date().toLocaleString(),
     };
 
-    // SEND EMAIL THROUGH EMAILJS
     emailjs
       .send(
         "service_zbwchpe",
@@ -322,10 +310,8 @@ const Contact: React.FC = () => {
       <div className="container">
         <h2 className="section-title">GET IN TOUCH</h2>
         <div className="contact-content">
-
-          {/* LEFT SIDE */}
           <div className="contact-info">
-            <h3 className="contact-heading">Let’s work together</h3>
+            <h3 className="contact-heading">Let's work together</h3>
             <p className="contact-text">
               I'm always open to new projects and collaborations.
               Got an idea? I'd love to hear it.
@@ -343,7 +329,6 @@ const Contact: React.FC = () => {
             </div>
           </div>
 
-          {/* CONTACT FORM */}
           <form className="contact-form" onSubmit={handleSubmit}>
             <div className="form-group">
               <label>Name</label>
@@ -394,7 +379,7 @@ const Footer: React.FC = () => {
   return (
     <footer className="footer">
       <div className="container">
-        <p>&copy; Enoabasi Akpata. 22120612872.</p>
+        <p>&copy; Enoabasi Akpata.</p>
         <div className="social-links">
           <a href="https://github.com/enoakpata" aria-label="GitHub">GitHub</a>
           <a href="https://www.linkedin.com/in/enoabasi-akpata-892878291/" aria-label="LinkedIn">LinkedIn</a>
@@ -413,7 +398,7 @@ const App: React.FC = () => {
         <main>
           <Routes>
             <Route path="/" element={<HomePage />} />
-            <Route path="/project/shift-management" element={<ProjectDetail />} />
+            <Route path="/project/:slug" element={<ProjectDetail />} />
           </Routes>
         </main>
         <Footer />
