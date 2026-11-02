@@ -72,26 +72,35 @@ const Header: React.FC = () => {
   );
 };
 
-// Hero Component — no photo, ML/AI/DS positioning
+// Hero Component — data science positioning
 const Hero: React.FC = () => {
   return (
     <section id="home" className="hero">
       <div className="container">
-        <div className="hero-content">
-          <div className="hero-bottom">
-            <div className="hero-statement">
-              <div className="statement-name">HI,</div>
-              <div className="statement-name">I AM ENOABASI</div>
-            </div>
-
-            <div className="hero-role">
-              <div className="role-title">MACHINE LEARNING &amp; AI</div>
-            </div>
+        <div className="hero-kicker">Data Science · Machine Learning · Lagos</div>
+        <h1 className="hero-headline">
+          I turn messy data into models you can <em>trust</em>.
+        </h1>
+        <p className="hero-sub">
+          Hi, I'm Enoabasi. I build end-to-end data science and ML projects, from cleaning the
+          data to explaining the predictions, with a focus on healthcare and accessibility.
+        </p>
+        <div className="hero-actions">
+          <a href="#works" className="hero-btn primary">See my work</a>
+          <a href="#contact" className="hero-btn ghost">Get in touch</a>
+        </div>
+        <div className="hero-stats">
+          <div>
+            <div className="hero-stat-value">Multimodal</div>
+            <div className="hero-stat-label">PCOS detection fusing imaging and clinical data</div>
           </div>
-
-          <div className="hero-description">
-            <p>Specialized in Machine Learning,</p>
-            <p>Deep Learning, and Applied Data Science.</p>
+          <div>
+            <div className="hero-stat-value">Scopus Q3</div>
+            <div className="hero-stat-label">Manuscript submitted to the Nigerian Journal of Technology</div>
+          </div>
+          <div>
+            <div className="hero-stat-value">SHAP + Grad-CAM</div>
+            <div className="hero-stat-label">Explainability built into every model I ship</div>
           </div>
         </div>
       </div>
@@ -115,7 +124,7 @@ const About: React.FC = () => {
   return (
     <section id="about" className="about">
       <div className="container">
-        <h2 className="section-title">ABOUT ME</h2>
+        <h2 className="section-title">About me</h2>
         <div className="about-content">
           <div className="about-text">
             <p>
@@ -130,7 +139,7 @@ const About: React.FC = () => {
             </p>
           </div>
           <div className="skills">
-            <h3 className="skills-heading">SKILLS & TECHNOLOGIES</h3>
+            <h3 className="skills-heading">Skills &amp; technologies</h3>
             <div className="skills-grid">
               {skills.map((skill) => (
                 <div key={skill} className="skill-item">
@@ -183,7 +192,7 @@ const Projects: React.FC = () => {
     <section id="works" className="projects">
       <div className="container">
         {/* Featured AI/ML Projects */}
-        <h2 className="section-title">AI &amp; MACHINE LEARNING PROJECTS</h2>
+        <h2 className="section-title">Selected data science work</h2>
         <div className="projects-featured-grid">
           {aiProjects.map((project) => (
             <div key={project.slug} className="featured-project-card">
@@ -207,7 +216,7 @@ const Projects: React.FC = () => {
         </div>
 
         {/* Other Projects */}
-        <h3 className="subsection-title">OTHER PROJECTS</h3>
+        <h3 className="subsection-title">Other projects</h3>
         <div className="projects-grid">
           {otherProjects.map((project) => (
             <div key={project.id} className="project-card">
@@ -308,7 +317,7 @@ const Contact: React.FC = () => {
   return (
     <section id="contact" className="contact">
       <div className="container">
-        <h2 className="section-title">GET IN TOUCH</h2>
+        <h2 className="section-title">Get in touch</h2>
         <div className="contact-content">
           <div className="contact-info">
             <h3 className="contact-heading">Let's work together</h3>
