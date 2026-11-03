@@ -47,11 +47,11 @@ const ProjectDetail: React.FC = () => {
         </div>
       </section>
 
-      {/* Screenshots Section — only renders once real screenshots exist */}
+      {/* Pictures Section — only renders once real pictures exist */}
       {project.screenshots.length > 0 && (
         <section className="project-section bg-light">
           <div className="container-narrow">
-            <h2 className="section-heading">Screenshots</h2>
+            <h2 className="section-heading">Pictures</h2>
             <div className="screenshots-grid">
               {project.screenshots.map((shot) => (
                 <div key={shot.src} className="screenshot-card">

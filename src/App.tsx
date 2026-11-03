@@ -159,33 +159,19 @@ const Projects: React.FC = () => {
   const aiProjectSlugs = ['pcos-multimodal-detection', 'color-readability-classifier'];
   const aiProjects = aiProjectSlugs.map((slug) => projectDetails[slug]);
 
+  // To add a picture, drop the file in /public/images and set `image` to "/images/<file>".
+  // To show "Visit Site", set `demo` to the live URL.
   const otherProjects: OtherProject[] = [
     {
       id: 1,
-      title: 'Hotel Menu',
-      description: 'A hotel menu embedded within a QR code.',
-      technologies: ['React', 'TypeScript', 'Vite'],
-      github: 'https://github.com/enoakpata/kt-menu-v2.git',
-      demo: 'https://kt-menu-v2-uor6.vercel.app/',
-      image: '/images/ktmenu_home.png',
+      title: 'Tavern Residence Website',
+      description:
+        'Booking website for Tavern Residence, a Lagos hotel under the Keno Tavern group, with online reservations and payments.',
+      technologies: ['Vite', 'JavaScript', 'Supabase', 'Paystack'],
+      github: 'https://github.com/enoakpata/tavern-residence',
+      demo: undefined,
+      image: undefined,
     },
-    {
-      id: 2,
-      title: 'Shift Management System',
-      description: 'Shift management system that leverages biometrics for signing in and out.',
-      technologies: ['Java', 'MySQL'],
-      github: 'https://github.com/enoakpata/shift-management-system.git',
-      demo: '/project/shift-management-system',
-      image: '/images/smss.png',
-    },
-    // {
-    //   id: 3,
-    //   title: 'Weather Forecast',
-    //   description: 'Weather website that shows a 5 day forecast.',
-    //   technologies: ['React', 'TypeScript', 'Vite'],
-    //   github: 'https://github.com/enoakpata/weather-app/tree/main',
-    //   image: '/images/weather_forecast.png',
-    // },
   ];
 
   return (
@@ -221,9 +207,11 @@ const Projects: React.FC = () => {
           {otherProjects.map((project) => (
             <div key={project.id} className="project-card">
               <hr className="divider" />
-              <div className="project-image">
-                <img src={project.image} alt={project.title} />
-              </div>
+              {project.image && (
+                <div className="project-image">
+                  <img src={project.image} alt={project.title} />
+                </div>
+              )}
               <div className="project-content">
                 <h3 className="project-title">{project.title}</h3>
                 <p className="project-description">{project.description}</p>
@@ -239,15 +227,9 @@ const Projects: React.FC = () => {
                     </a>
                   )}
                   {project.demo && (
-                    project.id === 2 ? (
-                      <Link to={project.demo} className="project-link">
-                        View Details →
-                      </Link>
-                    ) : (
-                      <a href={project.demo} className="project-link" target="_blank" rel="noreferrer">
-                        Live Demo →
-                      </a>
-                    )
+                    <a href={project.demo} className="project-link" target="_blank" rel="noreferrer">
+                      Visit Site →
+                    </a>
                   )}
                 </div>
               </div>

@@ -50,6 +50,9 @@ export const projectDetails: Record<string, ProjectDetailData> = {
     year: "2025 – 2026",
     overview:
       "Polycystic Ovary Syndrome (PCOS) is a common hormonal disorder that is frequently underdiagnosed due to overlapping symptoms and limited access to specialist screening. This project builds a multimodal machine learning system that fuses image-based and clinical (tabular) data to support earlier, more reliable detection — while keeping predictions interpretable enough for clinical use. The work was written up and submitted as a manuscript to the Nigerian Journal of Technology (Scopus Q3).",
+    // PICTURES: drop image files in /public/screenshots, then add entries like:
+    //   { src: "/screenshots/pcos_gradcam.png", caption: "Grad-CAM heatmap" },
+    // The Pictures section appears on the case-study page as soon as this has an entry.
     screenshots: [],
     problems: [
       {
