@@ -13,6 +13,7 @@ interface OtherProject {
   github?: string;
   demo?: string;
   image?: string;
+  images?: { src: string; caption?: string }[]; // gallery: shown as a picture grid
 }
 
 interface ContactFormData {
@@ -171,6 +172,9 @@ const Projects: React.FC = () => {
       github: 'https://github.com/enoakpata/tavern-residence',
       demo: 'https://tavernresidence.com.ng',
       image: undefined,
+      // PICTURES: put files in /public/images and add lines like
+      //   { src: '/images/tavern_home.png', caption: 'Home page' },
+      images: [],
     },
   ];
 
@@ -210,6 +214,16 @@ const Projects: React.FC = () => {
               {project.image && (
                 <div className="project-image">
                   <img src={project.image} alt={project.title} />
+                </div>
+              )}
+              {project.images && project.images.length > 0 && (
+                <div className="project-gallery">
+                  {project.images.map((img) => (
+                    <figure key={img.src} className="gallery-item">
+                      <img src={img.src} alt={img.caption ?? project.title} loading="lazy" />
+                      {img.caption && <figcaption>{img.caption}</figcaption>}
+                    </figure>
+                  ))}
                 </div>
               )}
               <div className="project-content">

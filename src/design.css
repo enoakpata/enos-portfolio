@@ -1058,3 +1058,26 @@ section {
   font-size: 0.9rem;
   color: var(--gray);
 }
+
+/* Project picture gallery */
+.project-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+  padding: 0 2rem;
+}
+
+.gallery-item img {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  border-radius: 0.5rem;
+  border: 1px solid var(--light-gray);
+  display: block;
+}
+
+.gallery-item figcaption {
+  font-size: 0.8rem;
+  color: var(--gray);
+  margin-top: 0.4rem;
+}
