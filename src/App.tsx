@@ -169,7 +169,7 @@ const Projects: React.FC = () => {
         'Booking website for Tavern Residence, a Lagos hotel under the Keno Tavern group, with online reservations and payments.',
       technologies: ['Vite', 'JavaScript', 'Supabase', 'Paystack'],
       github: 'https://github.com/enoakpata/tavern-residence',
-      demo: undefined,
+      demo: 'https://tavernresidence.com.ng',
       image: undefined,
     },
   ];
