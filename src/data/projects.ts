@@ -167,6 +167,7 @@ export const projectDetails: Record<string, ProjectDetailData> = {
       },
     ],
     githubUrl: "https://github.com/enoakpata/pcos_multimodal_project.git",
+    demoUrl: "https://pcosmultimodalproject-aappa6orsd4cyebe7xnid8u.streamlit.app/",
   },
 
   "color-readability-classifier": {

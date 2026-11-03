@@ -197,6 +197,11 @@ const Projects: React.FC = () => {
                 <a href={project.githubUrl} className="project-link" target="_blank" rel="noreferrer">
                   View Code →
                 </a>
+                {project.demoUrl && (
+                  <a href={project.demoUrl} className="project-link" target="_blank" rel="noreferrer">
+                    Live Demo →
+                  </a>
+                )}
                 <Link to={`/project/${project.slug}`} className="project-link">
                   View Case Study →
                 </Link>
